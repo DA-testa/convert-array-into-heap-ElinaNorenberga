@@ -1,5 +1,7 @@
 # python3
 import fileinput
+import sys
+import threading
 
 def build_min_heap(data, i, swaps):
     left = 2 * i + 1
@@ -34,7 +36,13 @@ def main():
     ievade = input()
     text = ""
     if ievade == "F":
-        text = fileinput.input()
+        text = input() 
+        with open(text) as f: 
+            lines = f.readlines()
+            n = int(lines[0])
+            array = lines[1].split()
+            for a in array:
+                data.append(int(a))
     if ievade == "I":
         n = int(input("Enter number of elements : ")) 
         for i in range(0, n):
@@ -42,9 +50,7 @@ def main():
             data.append(ele)
 
     swaps = build_heap(data)
-    print(data)
 
-    
     print(len(swaps))
     for i, j in swaps:
         print(i, j)
@@ -52,3 +58,12 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# In Python, the default limit on recursion depth is rather low,
+# so raise it here for this problem. Note that to take advantage
+# of bigger stack, we have to launch the computation in a new thread.
+    sys.setrecursionlimit(10**7)  # max depth of recursion
+    threading.stack_size(2**27)   # new thread will get stack of such size
+    threading.Thread(target=main).start()
+    #main()
+# print(numpy.array([1,2,3]))
