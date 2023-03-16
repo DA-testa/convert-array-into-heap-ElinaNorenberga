@@ -33,13 +33,8 @@ def main():
 
     data= []
 
-    n = int(input()) 
-
-    secondLine = input()
-    inputArray = secondLine.split()
-    for i in range(0, n):
-        ele = int(inputArray[i])
-        data.append(ele)
+    n = int(input())
+    data = list(map(int, input().split()))
 
     swaps = build_heap(data)
 
