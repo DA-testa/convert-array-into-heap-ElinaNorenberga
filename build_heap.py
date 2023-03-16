@@ -33,21 +33,13 @@ def main():
 
     data= []
 
-    ievade = input()
-    text = ""
-    if ievade == "F":
-        text = input() 
-        with open(text) as f: 
-            lines = f.readlines()
-            n = int(lines[0])
-            array = lines[1].split()
-            for a in array:
-                data.append(int(a))
-    if ievade == "I":
-        n = int(input("Enter number of elements : ")) 
-        for i in range(0, n):
-            ele = int(input())
-            data.append(ele)
+    n = int(input()) 
+
+    secondLine = input()
+    inputArray = secondLine.split()
+    for i in range(0, n):
+        ele = int(inputArray[i])
+        data.append(ele)
 
     swaps = build_heap(data)
 
