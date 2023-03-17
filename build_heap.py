@@ -5,7 +5,7 @@ import threading
 
 def build_min_heap(data, i, swaps):
     left = 2 * i + 1
-    right = 2 * 1 + 2
+    right = 2 * i + 2
 
     if left < len(data) and data[left] < data[i]:
         smallest = left
@@ -19,6 +19,8 @@ def build_min_heap(data, i, swaps):
         swaps.append([i, smallest]) 
         data[i], data[smallest] = data[smallest], data[i]
         build_min_heap(data, smallest, swaps)
+
+        #taisīt vairāk mainīgos lai sekot līdzi
 
 def build_heap(data):
     swaps = []
@@ -35,15 +37,12 @@ def main():
 
     ievade = input()
     text = ""
-    if ievade == "F":
-        text = input() 
+    if ievade[0] == "F":
+        text = "./tests/" +  input() 
         with open(text) as f: 
-            lines = f.readlines()
-            n = int(lines[0])
-            array = lines[1].split()
-            for a in array:
-                data.append(int(a))
-    if ievade == "I":
+            n = int(f.readline())
+            data = list(map(int,f.readline().split()))
+    if ievade[0] == "I":
         n = int(input())
         data = list(map(int, input().split()))
 
